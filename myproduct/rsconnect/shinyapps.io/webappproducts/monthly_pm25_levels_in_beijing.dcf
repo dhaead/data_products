@@ -1,0 +1,10 @@
+name: monthly_pm25_levels_in_beijing
+title: Monthly PM2.5 levels in Beijing
+account: webappproducts
+server: shinyapps.io
+appId: 187690
+bundleId: 860341
+url: https://webappproducts.shinyapps.io/monthly_pm25_levels_in_beijing/
+when: 1497031199.54001
+asMultiple: FALSE
+asStatic: FALSE
