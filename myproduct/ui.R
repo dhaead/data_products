@@ -6,20 +6,10 @@
 #
 
 library(shiny)
-
-
-
-
-
 library(ggplot2) # Data visualization
 library(readr) # CSV file I/O, e.g. the read_csv function
 library(data.table)
 library(caret)
-library(gbm)
-
-
-
-
 #intrain<- createDataPartition(y=red$year, p=0.6,list=FALSE)
 #training<-data.frame(red[intrain,])
 #testing<-data.frame(red[-intrain,])
@@ -41,15 +31,22 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       sliderInput("bins",
-                  "Select a Year:",
+                  "Select a Year to View the Mean and Distribution:",
                   min = 2010,
                   max = 2014,
                   value = 2010,step = 1)
     ),
 
+    
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("distPlot")
-    )
+      
+        
+        plotOutput("distPlot"),
+        
+        tableOutput("this")
+        
+        
+      )
   )
 ))

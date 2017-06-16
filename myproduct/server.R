@@ -12,7 +12,6 @@ red<-red[complete.cases(red),]
 
 
 
-
 shinyServer(function(input, output) {
 
   
@@ -24,14 +23,46 @@ shinyServer(function(input, output) {
     
     
     teh<-subset(red,year==input$bins)
+    #teh<-subset(red,year=="2010")
     
     
     x <- teh[,3]#training[,2]
+    x<-month.name[as.factor(x)]
+    
     
     y <- teh[,-2]$pm2.5#training[,-2]$pm2.5
     
-    ggplot(teh,aes(x,y))+geom_point()
+    
+    g<-ggplot(teh, aes(x, y)) + geom_boxplot()
+    g<-g+labs(title = "PM 2.5 Counts by Month") + ylab("PM 2.5 Counts") + xlab("Month")
+    g<-g+ theme(axis.text.x = element_text(face="bold", color="black", 
+                                       size=11, angle=45),
+            axis.text.y = element_text(face="bold", color="black", 
+                                       size=11, angle=45))
+    g
+    
     
   })
 
+  
+  
+  
+  output$this<-renderTable({ 
+    
+    teh<-subset(red,year==input$bins)
+    #teh<-subset(red,year=="2010")
+    
+    x <- teh[,3]#training[,2]
+    x<-month.name[as.factor(x)]
+    
+    
+    y <- teh[,-2]$pm2.5#training[,-2]$pm2.5
+    
+    paste("the mean for that year is",mean(y))
+    
+    
+    })
+  
+  
 })
+
